@@ -14,7 +14,7 @@ abstract contract CodeConstants {
     /* LINK / ETH price */
     int256 public MOCK_WEI_PER_UINT_LINK = 4e15;
 
-    uint256 public constant ETH_SEPOLIA_CHAIN_ID = 1115511;
+    uint256 public constant ETH_SEPOLIA_CHAIN_ID = 11155111;
     uint256 public constant LOCAL_CHAIN_ID = 31337;
 }
 
