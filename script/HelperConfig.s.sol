@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.26;
+pragma solidity ^0.8.19;
 
 import {Script} from "forge-std/Script.sol";
 import {VRFCoordinatorV2_5Mock} from "@chainlink/contracts/src/v0.8/vrf/mocks/VRFCoordinatorV2_5Mock.sol";
@@ -14,17 +14,17 @@ abstract contract CodeConstants {
     int256 public MOCK_WEI_PER_UINT_LINK = 4e15;
 
     uint256 public constant ETH_SEPOLIA_CHAIN_ID = 1115511;
-    uint256 public constant LOCAL_CHAIN_ID = 1337;
+    uint256 public constant LOCAL_CHAIN_ID = 31337;
 }
 
-contract Helperconfig is Script, CodeConstants {
+contract HelperConfig is Script, CodeConstants {
     struct NetworkConfig {
         uint256 entranceFee;
         uint256 interval;
         address vrfCoordinator;
         bytes32 gasLane;
         uint32 callbackGasLimit;
-        uint256 subscriptionId;
+        uint64 subscriptionId;
     }
 
     NetworkConfig public localNetworkConfig;
@@ -45,6 +45,10 @@ contract Helperconfig is Script, CodeConstants {
         } else {
             revert HelperConfig__InvalidChainId();
         }
+    }
+
+    function getConfig() public returns(NetworkConfig memory) {
+        return getConfigByChainId(block.chainid);
     }
 
     function getSepoliaEthConfig() public pure returns(NetworkConfig memory) {
@@ -81,5 +85,7 @@ contract Helperconfig is Script, CodeConstants {
             callbackGasLimit: 500000,
             subscriptionId: 0
         });
+
+        return localNetworkConfig;
     }
 }
