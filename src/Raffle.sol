@@ -27,7 +27,7 @@ contract Raffle is VRFConsumerBaseV2Plus {
     uint256 private immutable i_interval;
     address private immutable i_vrfCoordinator;
     bytes32 private immutable i_gasLane;
-    uint64 private immutable i_subscriptionId;
+    uint256 private immutable i_subscriptionId;
     uint32 private immutable i_gasLimit;
 
     address payable [] private s_players;
@@ -50,7 +50,7 @@ contract Raffle is VRFConsumerBaseV2Plus {
         uint256 interval,
         address vrfCoordinator,
         bytes32 gasLane,
-        uint64 subscriptionId,
+        uint256 subscriptionId,
         uint32 gasLimit
     ) VRFConsumerBaseV2Plus(vrfCoordinator) {
         i_entranceFee = entranceFee;
@@ -110,7 +110,7 @@ contract Raffle is VRFConsumerBaseV2Plus {
         }
 
         s_raffleState = RaffleState.CALCULATING;
-        uint256 requestId = s_vrfCoordinator.requestRandomWords(
+        s_vrfCoordinator.requestRandomWords(
             VRFV2PlusClient.RandomWordsRequest({
                 keyHash: i_gasLane,
                 subId: i_subscriptionId,
@@ -125,7 +125,7 @@ contract Raffle is VRFConsumerBaseV2Plus {
         );
     }
 
-    function fulfillRandomWords(uint256 requestId, uint256[] calldata randomWords) internal override {
+    function fulfillRandomWords(uint256 /*requestId*/, uint256[] calldata randomWords) internal override {
         uint256 indexOfWinner = randomWords[0] % s_players.length;
         address payable recentWinner = s_players[indexOfWinner];
         s_recentWinner = recentWinner;

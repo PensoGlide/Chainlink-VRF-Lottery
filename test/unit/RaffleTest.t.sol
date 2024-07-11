@@ -16,7 +16,7 @@ contract RaffleTest is Test {
     address vrfCoordinator;
     bytes32 gasLane;
     uint32 callbackGasLimit;
-    uint64 subscriptionId;
+    uint256 subscriptionId;
 
     address public PLAYER = makeAddr("player");
     uint256 public constant STARTING_PLAYER_BALANCE = 10 ether;
