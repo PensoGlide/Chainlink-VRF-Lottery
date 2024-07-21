@@ -1,3 +1,5 @@
 @chainlink/contracts/=lib/chainlink-brownie-contracts/contracts/
-chainlink-brownie-contracts/=lib/chainlink-brownie-contracts/contracts/src/v0.6/vendor/@arbitrum/nitro-contracts/src/
+ds-test/=lib/solmate/lib/ds-test/src/
 forge-std/=lib/forge-std/src/
+foundry-devops/=lib/foundry-devops/
+@solmate=lib/solmate/src/
