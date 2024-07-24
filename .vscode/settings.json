@@ -4,5 +4,10 @@
     "solidity.remappings": [
         "@chainlink/contracts/=lib/chainlink-brownie-contracts/contracts/",
         "@solmate/=lib/solmate/src/"
-    ]
+    ],
+    "editor.formatOnSave": true,
+    "[solidity]": {
+      "editor.defaultFormatter": "JuanBlanco.solidity" 
+    },
+    "solidity.formatter": "forge",
 }
